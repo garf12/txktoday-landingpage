@@ -68,7 +68,7 @@ function Hero() {
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-txk-darker">
       <motion.div
         className="absolute inset-0 bg-cover bg-center opacity-10"
-        style={{ backgroundImage: 'url(/hero-bg.jpg)', y: bgY }}
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}hero-bg.jpg)`, y: bgY }}
       />
       <div className="absolute inset-0 bg-gradient-radial" />
       <div className="absolute inset-0">
@@ -232,7 +232,7 @@ function About() {
                 {/* Image container */}
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-txk-orange/15">
                   <img
-                    src="/hero-bg.jpg"
+                    src={`${import.meta.env.BASE_URL}hero-bg.jpg`}
                     alt="Texarkana State Line"
                     className="w-full h-80 md:h-[420px] object-cover"
                   />
@@ -306,9 +306,9 @@ function About() {
 
 function Advertisers() {
   const logos = [
-    { src: '/saulogo-32264.jpg', alt: 'Southern Arkansas University' },
-    { src: '/TECH-TM-02.webp', alt: 'Arkansas Tech' },
-    { src: '/UAHT_Logo_Red.png', alt: 'UAHT' },
+    { src: `${import.meta.env.BASE_URL}saulogo-32264.jpg`, alt: 'Southern Arkansas University' },
+    { src: `${import.meta.env.BASE_URL}TECH-TM-02.webp`, alt: 'Arkansas Tech' },
+    { src: `${import.meta.env.BASE_URL}UAHT_Logo_Red.png`, alt: 'UAHT' },
   ]
   // Double the array for seamless infinite scroll
   const scrollLogos = [...logos, ...logos, ...logos, ...logos]
