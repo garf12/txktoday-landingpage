@@ -1,10 +1,10 @@
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import {
   Eye, Users, Mail, Facebook, TrendingUp, Award,
   Phone, AtSign, Newspaper, Store, Home,
   FileText, Video, Zap, Shield, CheckCircle2,
-  ArrowRight, Star, Clock, Sparkles
+  ArrowRight, Star, Clock, Sparkles, Globe, Search
 } from 'lucide-react'
 
 function AnimatedSection({ children, className = '', delay = 0 }) {
@@ -32,11 +32,8 @@ function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 glass-light"
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="bg-txk-orange text-white font-black text-2xl px-3 py-1 tracking-tight">
-            TXK
-          </div>
-          <span className="text-txk-orange font-bold text-sm tracking-[0.2em] uppercase">Today</span>
+        <div className="flex items-center">
+          <img src={`${import.meta.env.BASE_URL}txk-logo.png`} alt="TXK Today" className="h-10" />
         </div>
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
           <a href="#plans" className="hover:text-txk-orange transition-colors">Plans</a>
@@ -173,9 +170,9 @@ function Hero() {
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
         >
           {[
-            { value: '1.1M', label: 'Yearly Pageviews', icon: Eye },
-            { value: '113K+', label: 'Monthly Visitors', icon: Users },
-            { value: '109K+', label: 'Facebook Followers', icon: Facebook },
+            { value: '15+ Million', label: 'Monthly Facebook Engagement', icon: Eye },
+            { value: '200,000+', label: 'Monthly Unique Visitors', icon: Users },
+            { value: '115,000+', label: 'Facebook Followers', icon: Facebook },
             { value: '2,500+', label: 'Email Subscribers', icon: Mail },
           ].map((stat, i) => (
             <motion.div
@@ -193,7 +190,9 @@ function Hero() {
         </motion.div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
+      <svg className="absolute bottom-0 left-0 right-0 w-full h-20" viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,80 L0,40 Q720,0 1440,40 L1440,80 Z" fill="#fdf8f3" />
+      </svg>
     </section>
   )
 }
@@ -201,12 +200,6 @@ function Hero() {
 function About() {
   return (
     <section className="relative overflow-hidden">
-      {/* Top diagonal divider */}
-      <div className="absolute top-0 left-0 right-0 h-24 bg-txk-darker" />
-      <svg className="relative w-full h-16 -mt-px" viewBox="0 0 1440 64" preserveAspectRatio="none">
-        <path d="M0,0 L1440,0 L1440,32 Q720,80 0,32 Z" fill="#0f0f1a" />
-      </svg>
-
       {/* Main content area with warm gradient background */}
       <div className="bg-gradient-to-b from-txk-cream via-white to-white pt-8 pb-24">
         {/* Orange accent bar */}
@@ -232,22 +225,10 @@ function About() {
                 {/* Image container */}
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-txk-orange/15">
                   <img
-                    src={`${import.meta.env.BASE_URL}hero-bg.jpg`}
-                    alt="Texarkana State Line"
-                    className="w-full h-80 md:h-[420px] object-cover"
+                    src={`${import.meta.env.BASE_URL}images/txk-display.png`}
+                    alt="TXKtoday Display"
+                    className="w-full h-80 md:h-[420px] object-contain bg-txk-cream"
                   />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-txk-dark/60 via-transparent to-transparent" />
-                  {/* Badge on image */}
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 flex items-center gap-4">
-                      <div className="bg-txk-orange text-white font-black text-xl px-3 py-1.5 rounded-lg">TXK</div>
-                      <div>
-                        <p className="font-bold text-txk-dark text-sm">Serving Texarkana</p>
-                        <p className="text-gray-500 text-xs">Texas & Arkansas since 2014</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </AnimatedSection>
@@ -309,12 +290,17 @@ function Advertisers() {
     { src: `${import.meta.env.BASE_URL}saulogo-32264.jpg`, alt: 'Southern Arkansas University' },
     { src: `${import.meta.env.BASE_URL}TECH-TM-02.webp`, alt: 'Arkansas Tech' },
     { src: `${import.meta.env.BASE_URL}UAHT_Logo_Red.png`, alt: 'UAHT' },
+    { src: `${import.meta.env.BASE_URL}harvest.webp`, alt: 'Harvest' },
+    { src: `${import.meta.env.BASE_URL}domino.png`, alt: 'Domino' },
+    { src: `${import.meta.env.BASE_URL}four-state-fair.jpeg`, alt: 'Four State Fair' },
+    { src: `${import.meta.env.BASE_URL}TISD.jpg`, alt: 'TISD' },
+    { src: `${import.meta.env.BASE_URL}hospice.png`, alt: 'Hospice' },
   ]
   // Double the array for seamless infinite scroll
   const scrollLogos = [...logos, ...logos, ...logos, ...logos]
 
   return (
-    <section className="py-20 bg-gray-50 overflow-hidden">
+    <section className="pt-8 pb-20 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <AnimatedSection className="text-center mb-14">
           <span className="text-txk-orange font-semibold text-sm tracking-wider uppercase">Trusted Partners</span>
@@ -338,7 +324,7 @@ function Advertisers() {
           animate={{ x: ['0%', '-50%'] }}
           transition={{
             x: {
-              duration: 25,
+              duration: 45,
               repeat: Infinity,
               ease: 'linear',
             },
@@ -347,13 +333,79 @@ function Advertisers() {
           {scrollLogos.map((logo, i) => (
             <div
               key={i}
-              className="flex-shrink-0 w-48 h-28 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center p-6 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+              className="flex-shrink-0 w-60 h-36 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center p-8 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
             >
               <img
                 src={logo.src}
                 alt={logo.alt}
                 className="max-w-full max-h-full object-contain"
               />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function BroadstreetAd({ adId }) {
+  const containerRef = useRef(null)
+  const loadedRef = useRef(false)
+  useEffect(() => {
+    if (!containerRef.current || loadedRef.current) return
+    loadedRef.current = true
+    const div = document.createElement('div')
+    div.setAttribute('street-address', adId)
+    containerRef.current.appendChild(div)
+
+    const script = document.createElement('script')
+    script.async = true
+    script.src = `https://ad.broadstreetads.com/display/${adId}.js?sa=1&`
+      + (window.broadstreet ? 'init=0' : '')
+    containerRef.current.appendChild(script)
+  }, [adId])
+  return <div ref={containerRef} className="flex justify-center" />
+}
+
+function AdShowcase() {
+  const ads = ['1364230', '1362381', '397725']
+  const scrollAds = [...ads, ...ads, ...ads, ...ads]
+
+  return (
+    <section className="py-24 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <AnimatedSection className="text-center mb-16">
+          <span className="text-txk-orange font-semibold text-sm tracking-wider uppercase">Our Work</span>
+          <h2 className="text-4xl md:text-5xl font-black text-txk-dark mt-3 mb-4">
+            Advertising Showcase
+          </h2>
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+            See examples of ads we create for our partners
+          </p>
+        </AnimatedSection>
+      </div>
+
+      <div className="relative">
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
+
+        <motion.div
+          className="flex items-center gap-8 w-max"
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{
+            x: {
+              duration: 30,
+              repeat: Infinity,
+              ease: 'linear',
+            },
+          }}
+        >
+          {scrollAds.map((adId, i) => (
+            <div
+              key={i}
+              className="flex-shrink-0 glass rounded-2xl p-6"
+            >
+              <BroadstreetAd adId={adId} />
             </div>
           ))}
         </motion.div>
@@ -474,14 +526,23 @@ function Plans() {
         <AnimatedSection delay={0.5} className="mt-12">
           <motion.div
             whileHover={{ scale: 1.02 }}
-            className="max-w-4xl mx-auto bg-gradient-to-r from-txk-orange to-txk-orange-light rounded-2xl p-8 text-center text-white shadow-2xl shadow-txk-orange/25"
+            className="max-w-4xl mx-auto bg-txk-dark rounded-3xl p-10 md:p-12 text-center text-white shadow-2xl shadow-txk-dark/40 border border-white/10"
           >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-txk-orange/15 text-txk-orange text-sm font-semibold mb-4">
+              <Zap className="w-4 h-4" /> Total Coverage
+            </span>
             <h3 className="text-2xl md:text-3xl font-bold mb-2">Want All Ad Positions?</h3>
-            <p className="text-white/80 mb-4">Maximum exposure across every placement on TXKtoday</p>
-            <div className="text-4xl md:text-5xl font-black">
-              $1,650<span className="text-xl font-normal">/mo</span>
-              <span className="text-xl mx-3">or</span>
-              $16,500<span className="text-xl font-normal">/yr</span>
+            <p className="text-gray-400 mb-6">Maximum exposure across every placement on TXKtoday</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+              <div>
+                <span className="text-5xl md:text-6xl font-black text-txk-orange">$1,650</span>
+                <span className="text-lg text-gray-400">/mo</span>
+              </div>
+              <span className="text-gray-500 text-lg font-medium">or</span>
+              <div>
+                <span className="text-5xl md:text-6xl font-black text-white">$16,500</span>
+                <span className="text-lg text-gray-400">/yr</span>
+              </div>
             </div>
           </motion.div>
         </AnimatedSection>
@@ -499,28 +560,32 @@ function Specialties() {
       title: 'Community Announcement',
       price: '$225',
       description: 'Milestones, celebrations, weddings, engagements, graduations, birthdays, and more — posted to TXKtoday.com and preserved forever online.',
+      includes: ['Article posted to TXKtoday.com', 'Shared on Facebook', 'Permanently archived online', 'Free graphic design'],
       note: 'All we need is a graphic and statement',
     },
     {
       icon: Store,
       title: 'New Business Feature',
       price: '$300',
-      description: 'Special rate for new Texarkana businesses. Perfect for restaurants, food trucks, retail, health clinics, and creative startups. Includes featured article posted to Facebook.',
+      description: 'Special rate for new Texarkana businesses. Perfect for restaurants, food trucks, retail, health clinics, and creative startups.',
+      includes: ['Featured article on TXKtoday.com', 'Article posted to Facebook', 'Onsite ribbon-cutting coverage available', 'Free graphic design'],
       note: 'Onsite ribbon-cutting coverage available',
     },
     {
       icon: Home,
       title: 'Real Estate Weekly Listing',
       price: '$285',
-      description: 'Your open house or real estate listing posted to Facebook and one week of Showcase ads on TXKtoday.com with professional, customizable marketing templates.',
+      description: 'Your open house or real estate listing with professional, customizable marketing templates.',
+      includes: ['Listing posted to Facebook', 'One week of Showcase ads', 'Professional marketing templates', 'Video property walkthrough available'],
       note: 'Video property walkthrough available',
     },
     {
       icon: Facebook,
       title: 'Facebook Post(s)',
       price: 'From $350',
-      description: 'Post on TXKtoday\'s Facebook page to our audience of over 107,000+ followers. Single ($350), Twin ($625), or Six Post Pack ($1,500).',
-      note: '107,000+ follower reach',
+      description: 'Post on TXKtoday\'s Facebook page to our audience of over 115,000+ followers.',
+      includes: ['Single post — $350', 'Twin posts — $625', 'Six Post Pack — $1,500', '115,000+ follower reach'],
+      note: '115,000+ follower reach',
     },
   ]
 
@@ -528,7 +593,7 @@ function Specialties() {
     <section id="specialties" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <AnimatedSection className="text-center mb-16">
-          <span className="text-txk-orange font-semibold text-sm tracking-wider uppercase">Specialty Options</span>
+          <span className="text-txk-orange font-semibold text-sm tracking-wider uppercase">À La Carte Options</span>
           <h2 className="text-4xl md:text-5xl font-black text-txk-dark mt-3 mb-4">
             Engage the Right Way
           </h2>
@@ -544,12 +609,20 @@ function Specialties() {
                 whileHover={{ y: -6 }}
                 className="bg-white rounded-2xl p-6 h-full flex flex-col border border-gray-100 shadow-lg shadow-gray-50 hover:shadow-xl hover:shadow-txk-orange/10 transition-shadow"
               >
-                <div className="w-14 h-14 bg-txk-cream rounded-2xl flex items-center justify-center mb-5">
+                <div className="w-14 h-14 bg-txk-cream rounded-2xl flex items-center justify-center mb-5 mx-auto">
                   <item.icon className="w-7 h-7 text-txk-orange" />
                 </div>
-                <h3 className="text-lg font-bold text-txk-dark mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-500 mb-4 flex-1">{item.description}</p>
-                <div className="pt-4 border-t border-gray-100">
+                <h3 className="text-lg font-bold text-txk-dark mb-2 min-h-[3.5rem] text-center">{item.title}</h3>
+                <p className="text-sm text-gray-500 mb-4">{item.description}</p>
+                <ul className="space-y-2 mb-4">
+                  {item.includes.map((inc, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+                      <span className="text-gray-600">{inc}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto pt-4 border-t border-gray-100 text-center">
                   <span className="text-3xl font-black text-txk-orange">{item.price}</span>
                   <p className="text-xs text-gray-400 mt-2">{item.note}</p>
                 </div>
@@ -558,36 +631,52 @@ function Specialties() {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mt-8 max-w-3xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 mt-8">
           <AnimatedSection delay={0.4}>
             <motion.div
               whileHover={{ scale: 1.03 }}
-              className="bg-txk-cream rounded-2xl p-6 flex items-center gap-4"
+              className="bg-txk-cream rounded-2xl p-5 flex items-center gap-3"
             >
-              <div className="w-14 h-14 bg-txk-orange rounded-2xl flex items-center justify-center shrink-0">
-                <FileText className="w-7 h-7 text-white" />
+              <div className="w-11 h-11 bg-txk-orange rounded-xl flex items-center justify-center shrink-0">
+                <FileText className="w-5 h-5 text-white" />
               </div>
               <div className="text-left">
-                <h4 className="font-bold text-txk-dark">Featured Article</h4>
-                <p className="text-sm text-gray-500">Posted to TXKtoday.com & Facebook</p>
+                <h4 className="font-bold text-txk-dark text-sm">Featured Article</h4>
+                <p className="text-xs text-gray-500">Posted to TXKtoday.com & Facebook</p>
               </div>
-              <span className="text-2xl font-black text-txk-orange ml-auto">$350</span>
+              <span className="text-xl font-black text-txk-orange ml-auto">$350</span>
             </motion.div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.5}>
             <motion.div
               whileHover={{ scale: 1.03 }}
-              className="bg-txk-cream rounded-2xl p-6 flex items-center gap-4"
+              className="bg-txk-cream rounded-2xl p-5 flex items-center gap-3"
             >
-              <div className="w-14 h-14 bg-txk-orange rounded-2xl flex items-center justify-center shrink-0">
-                <Video className="w-7 h-7 text-white" />
+              <div className="w-11 h-11 bg-txk-orange rounded-xl flex items-center justify-center shrink-0">
+                <Video className="w-5 h-5 text-white" />
               </div>
               <div className="text-left">
-                <h4 className="font-bold text-txk-dark">Featured Video</h4>
-                <p className="text-sm text-gray-500">Posted to TXKtoday.com & Facebook</p>
+                <h4 className="font-bold text-txk-dark text-sm">Featured Video</h4>
+                <p className="text-xs text-gray-500">Posted to TXKtoday.com & Facebook</p>
               </div>
-              <span className="text-2xl font-black text-txk-orange ml-auto">$850</span>
+              <span className="text-xl font-black text-txk-orange ml-auto">$850</span>
+            </motion.div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.6}>
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              className="bg-txk-cream rounded-2xl p-5 flex items-center gap-3"
+            >
+              <div className="w-11 h-11 bg-txk-orange rounded-xl flex items-center justify-center shrink-0">
+                <Sparkles className="w-5 h-5 text-white" />
+              </div>
+              <div className="text-left">
+                <h4 className="font-bold text-txk-dark text-sm">Event Promotion</h4>
+                <p className="text-xs text-gray-500">Facebook post, article & video</p>
+              </div>
+              <span className="text-xl font-black text-txk-orange ml-auto whitespace-nowrap">From $250</span>
             </motion.div>
           </AnimatedSection>
         </div>
@@ -901,13 +990,13 @@ function Contact() {
               Stephen@TXKtoday.com
             </motion.a>
             <motion.a
-              href="tel:9033674255"
+              href="tel:9032807977"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-3 glass text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-colors"
             >
               <Phone className="w-5 h-5" />
-              903.367.4255
+              903.280.7977
             </motion.a>
           </div>
 
@@ -921,6 +1010,59 @@ function Contact() {
             </div>
           </div>
         </AnimatedSection>
+      </div>
+    </section>
+  )
+}
+
+function AdditionalServices() {
+  const services = [
+    {
+      icon: Globe,
+      title: 'Websites',
+      description: 'Full websites or one-off landing pages tailored to your business. Modern, mobile-friendly designs that convert visitors into customers.',
+    },
+    {
+      icon: Search,
+      title: 'SEO Consultation',
+      description: 'Expert guidance to improve your search engine rankings. We help local businesses get found by the customers who are looking for them.',
+    },
+  ]
+
+  return (
+    <section className="py-24 relative overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/digital.jpg)` }}
+      />
+      <div className="absolute inset-0 bg-txk-darker/70" />
+      <div className="max-w-7xl mx-auto px-6 relative">
+        <AnimatedSection className="text-center mb-16">
+          <span className="text-txk-orange font-semibold text-sm tracking-wider uppercase">Beyond Advertising</span>
+          <h2 className="text-4xl md:text-5xl font-black text-white mt-3 mb-4">
+            Additional Marketing Services
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Extend your reach with our full suite of digital marketing solutions
+          </p>
+        </AnimatedSection>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {services.map((service, i) => (
+            <AnimatedSection key={i} delay={i * 0.15}>
+              <motion.div
+                whileHover={{ y: -6 }}
+                className="bg-white rounded-3xl p-8 h-full flex flex-col border border-gray-100 shadow-lg shadow-gray-50 hover:shadow-xl hover:shadow-txk-orange/10 transition-shadow"
+              >
+                <div className="w-14 h-14 bg-txk-cream rounded-2xl flex items-center justify-center mb-5">
+                  <service.icon className="w-7 h-7 text-txk-orange" />
+                </div>
+                <h3 className="text-xl font-bold text-txk-dark mb-3">{service.title}</h3>
+                <p className="text-gray-500 leading-relaxed">{service.description}</p>
+              </motion.div>
+            </AnimatedSection>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -945,11 +1087,13 @@ export default function App() {
       <Hero />
       <About />
       <Advertisers />
-      <Stats />
       <Plans />
       <Specialties />
       <Bundles />
+      <AdShowcase />
+      <Stats />
       <Process />
+      <AdditionalServices />
       <Contact />
       <Footer />
     </div>
