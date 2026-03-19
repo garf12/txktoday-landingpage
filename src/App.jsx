@@ -201,7 +201,7 @@ function About() {
   return (
     <section className="relative overflow-hidden">
       {/* Main content area with warm gradient background */}
-      <div className="bg-gradient-to-b from-txk-cream via-white to-white pt-8 pb-24">
+      <div className="bg-gradient-to-b from-txk-cream via-white to-white pt-8 pb-12">
         {/* Orange accent bar */}
         <div className="max-w-7xl mx-auto px-6 mb-12">
           <motion.div
@@ -253,33 +253,14 @@ function About() {
                 ))}
               </div>
 
-              {/* Inline stats row */}
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { icon: Eye, value: '1.1M', label: 'Yearly Pageviews' },
-                  { icon: Users, value: '113K+', label: 'Unique Monthly Visitors' },
-                  { icon: Facebook, value: '11M', label: 'Facebook Pageviews' },
-                  { icon: Clock, value: '45+', label: 'Minutes per Month' },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.05, y: -4 }}
-                    className="bg-white rounded-2xl p-5 shadow-lg shadow-txk-orange/5 border border-txk-orange/10 text-center"
-                  >
-                    <item.icon className="w-7 h-7 text-txk-orange mx-auto mb-2" />
-                    <div className="text-2xl font-black text-txk-dark">{item.value}</div>
-                    <div className="text-xs text-gray-500 mt-1">{item.label}</div>
-                  </motion.div>
-                ))}
-              </div>
             </AnimatedSection>
           </div>
         </div>
       </div>
 
       {/* Bottom divider into next section */}
-      <svg className="w-full h-12 -mb-px" viewBox="0 0 1440 48" preserveAspectRatio="none">
-        <path d="M0,48 L0,16 Q720,-16 1440,16 L1440,48 Z" fill="#f9fafb" />
+      <svg className="w-full h-8 -mb-px" viewBox="0 0 1440 32" preserveAspectRatio="none">
+        <path d="M0,32 L0,8 Q720,-8 1440,8 L1440,32 Z" fill="#f9fafb" />
       </svg>
     </section>
   )
@@ -300,7 +281,7 @@ function Advertisers() {
   const scrollLogos = [...logos, ...logos, ...logos, ...logos]
 
   return (
-    <section className="pt-8 pb-20 bg-gray-50 overflow-hidden">
+    <section className="pt-8 pb-12 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <AnimatedSection className="text-center mb-14">
           <span className="text-txk-orange font-semibold text-sm tracking-wider uppercase">Trusted Partners</span>
@@ -372,7 +353,7 @@ function AdShowcase() {
   const scrollAds = [...ads, ...ads, ...ads, ...ads]
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="py-12 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <AnimatedSection className="text-center mb-16">
           <span className="text-txk-orange font-semibold text-sm tracking-wider uppercase">Our Work</span>
@@ -533,21 +514,22 @@ function Plans() {
             </span>
             <h3 className="text-2xl md:text-3xl font-bold mb-2">Want All Ad Positions?</h3>
             <p className="text-gray-400 mb-6">Maximum exposure across every placement on TXKtoday</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-6">
               <div>
                 <span className="text-5xl md:text-6xl font-black text-txk-orange">$1,650</span>
-                <span className="text-lg text-gray-400">/mo</span>
+                <span className="text-lg text-gray-400">/mo<sup>+</sup></span>
               </div>
               <span className="text-gray-500 text-lg font-medium">or</span>
               <div>
                 <span className="text-5xl md:text-6xl font-black text-white">$16,500</span>
-                <span className="text-lg text-gray-400">/yr</span>
+                <span className="text-lg text-gray-400">/yr<sup>*</sup></span>
               </div>
+            </div>
+            <div className="border-t border-white/10 pt-4">
+              <p className="text-gray-400 text-sm">*Yearly pricing must pay 6 months up front. <sup>+</sup>Complementary video creation with two-month agreement.</p>
             </div>
           </motion.div>
         </AnimatedSection>
-
-        <p className="text-center text-sm text-gray-400 mt-6">*Complementary video creation with two-month agreement</p>
       </div>
     </section>
   )
@@ -809,6 +791,25 @@ function Stats() {
           </h2>
         </AnimatedSection>
 
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
+          {[
+            { icon: Eye, value: '1.1M', label: 'Yearly Pageviews' },
+            { icon: Users, value: '113K+', label: 'Unique Monthly Visitors' },
+            { icon: Facebook, value: '11M', label: 'Facebook Pageviews' },
+            { icon: Clock, value: '45+', label: 'Minutes per Month' },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05, y: -4 }}
+              className="bg-gray-50 rounded-2xl p-5 shadow-lg shadow-txk-orange/5 border border-txk-orange/10 text-center"
+            >
+              <item.icon className="w-7 h-7 text-txk-orange mx-auto mb-2" />
+              <div className="text-2xl font-black text-txk-dark">{item.value}</div>
+              <div className="text-xs text-gray-500 mt-1">{item.label}</div>
+            </motion.div>
+          ))}
+        </div>
+
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <AnimatedSection>
             <div className="bg-gray-50 rounded-3xl p-8">
@@ -848,20 +849,33 @@ function Stats() {
 
           <AnimatedSection delay={0.2}>
             <div className="bg-gray-50 rounded-3xl p-8">
-              <h3 className="text-xl font-bold text-txk-dark mb-6">Social & Email Reach</h3>
-              <div className="space-y-5">
+              <div className="text-center mb-6">
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="text-6xl font-black text-txk-orange"
+                >85.9%</motion.div>
+                <p className="text-gray-600 font-semibold mt-1">of our readers are local</p>
+                <p className="text-gray-400 text-sm mt-1">The rest have a connection to Texarkana</p>
+              </div>
+              <h3 className="text-xl font-bold text-txk-dark mb-5">Where Our Readers Live</h3>
+              <div className="space-y-4">
                 {[
-                  { label: 'Facebook Followers', value: '109,000+', width: '100%' },
-                  { label: 'Facebook News Group', value: '31,500+', width: '29%' },
-                  { label: 'Morning Email', value: '2,500+', width: '8%' },
-                  { label: 'Facebook Pageviews', value: '11M', width: '100%' },
+                  { label: 'Texarkana, TX', value: '37.5%', width: '100%' },
+                  { label: 'Texarkana, AR', value: '27.1%', width: '72%' },
+                  { label: 'Wake Village, TX', value: '7.4%', width: '20%' },
+                  { label: 'Hope, AR', value: '5.3%', width: '14%' },
+                  { label: 'Ashdown, AR', value: '4.4%', width: '12%' },
+                  { label: 'Atlanta, TX', value: '4.2%', width: '11%' },
                 ].map((item, i) => (
                   <div key={i}>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-600">{item.label}</span>
+                      <span className="text-gray-600 font-medium">{item.label}</span>
                       <span className="font-bold text-txk-dark">{item.value}</span>
                     </div>
-                    <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: item.width }}
@@ -880,7 +894,7 @@ function Stats() {
         <AnimatedSection delay={0.3} className="mt-16">
           <div className="max-w-4xl mx-auto bg-txk-cream rounded-3xl p-8 md:p-12">
             <h3 className="text-2xl font-bold text-txk-dark mb-2 text-center">Available Discounts</h3>
-            <p className="text-gray-500 text-center mb-8">Discounts can be combined!</p>
+            <p className="text-gray-500 text-center mb-8">Discounts can be combined! Discounts available for up front payments.</p>
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 { label: 'Credit Card on File', value: '5%', icon: Shield },
@@ -986,7 +1000,7 @@ function Contact() {
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-3 bg-txk-orange text-white px-8 py-4 rounded-full text-lg font-semibold shadow-2xl shadow-txk-orange/30 hover:bg-txk-orange-light transition-colors"
             >
-              <AtSign className="w-5 h-5" />
+              <Mail className="w-5 h-5" />
               Stephen@TXKtoday.com
             </motion.a>
             <motion.a
@@ -1001,11 +1015,8 @@ function Contact() {
           </div>
 
           <div className="glass rounded-2xl p-6 inline-flex items-center gap-4">
-            <div className="bg-txk-orange text-white font-black text-3xl px-4 py-2 tracking-tight">
-              TXK
-            </div>
+            <img src={`${import.meta.env.BASE_URL}txk-logo.png`} alt="TXK Today" className="h-12" />
             <div className="text-left">
-              <span className="text-txk-orange font-bold text-sm tracking-[0.2em] uppercase block">Today</span>
               <span className="text-gray-400 text-sm">Texarkana&apos;s Daily Must-Read Since 2014</span>
             </div>
           </div>
@@ -1073,7 +1084,7 @@ function Footer() {
     <footer className="bg-txk-darker border-t border-white/5 py-8">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <p className="text-gray-500 text-sm">
-          &copy; {new Date().getFullYear()} TXKtoday.com. All rights reserved. Circulation Verification Council verified.
+          &copy; {new Date().getFullYear()} TXKtoday.com. All rights reserved.
         </p>
       </div>
     </footer>
@@ -1091,6 +1102,19 @@ export default function App() {
       <Specialties />
       <Bundles />
       <AdShowcase />
+      <div className="relative bg-white py-4">
+        <div className="max-w-5xl mx-auto px-6 flex items-center gap-6">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-txk-orange/30 to-txk-orange" />
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-txk-orange/40" />
+            <div className="w-3 h-3 rounded-full bg-txk-orange" />
+            <div className="bg-txk-orange text-white font-black text-lg px-3 py-1 tracking-tight rounded-lg">TXK</div>
+            <div className="w-3 h-3 rounded-full bg-txk-orange" />
+            <div className="w-2 h-2 rounded-full bg-txk-orange/40" />
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-l from-transparent via-txk-orange/30 to-txk-orange" />
+        </div>
+      </div>
       <Stats />
       <Process />
       <AdditionalServices />
