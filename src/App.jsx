@@ -4,7 +4,8 @@ import {
   Eye, Users, Mail, Facebook, TrendingUp, Award,
   Phone, AtSign, Newspaper, Store, Home,
   FileText, Video, Zap, Shield, CheckCircle2,
-  ArrowRight, Star, Clock, Sparkles, Globe, Search
+  ArrowRight, Star, Clock, Sparkles, Globe, Search,
+  ThumbsUp, MessageCircle, Timer
 } from 'lucide-react'
 
 function AnimatedSection({ children, className = '', delay = 0 }) {
@@ -919,6 +920,143 @@ function Stats() {
   )
 }
 
+function PostPerformance() {
+  const metrics = [
+    { icon: Eye, value: '177,827', label: 'Views', accent: 'from-txk-orange to-txk-orange-light' },
+    { icon: Users, value: '90,040', label: 'Unique Viewers', accent: 'from-txk-orange to-txk-orange-light' },
+    { icon: TrendingUp, value: '2,077', label: 'Interactions', accent: 'from-txk-orange to-txk-orange-light' },
+    { icon: ThumbsUp, value: '1,449', label: 'Reactions', accent: 'from-txk-orange to-txk-orange-light' },
+    { icon: MessageCircle, value: '301', label: 'Comments', accent: 'from-txk-orange to-txk-orange-light' },
+    { icon: Facebook, value: '45.9%', label: 'Reach Beyond Followers', accent: 'from-txk-orange to-txk-orange-light' },
+  ]
+
+  return (
+    <section id="performance" className="py-24 bg-txk-darker relative overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute top-1/3 -left-32 w-[28rem] h-[28rem] bg-txk-orange/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 -right-32 w-[28rem] h-[28rem] bg-txk-orange/10 rounded-full blur-3xl" />
+
+      {/* Subtle grid pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(232,125,30,1) 1px, transparent 1px), linear-gradient(90deg, rgba(232,125,30,1) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 relative">
+        <AnimatedSection className="text-center mb-14">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-txk-orange text-sm font-semibold mb-5">
+            <Timer className="w-4 h-4" />
+            Real Post. Real 24 Hours.
+          </span>
+          <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.05] mb-4">
+            One Post. <span className="text-gradient">One Day.</span>
+            <br />This Kind of Reach.
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            A typical TXKtoday Facebook post — these are the numbers from the first 24 hours after publishing.
+          </p>
+        </AnimatedSection>
+
+        <div className="grid lg:grid-cols-5 gap-10 items-center max-w-6xl mx-auto">
+          {/* Graphic */}
+          <AnimatedSection className="lg:col-span-3">
+            <div className="relative group">
+              {/* Glow halo */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-txk-orange/40 via-txk-orange/0 to-txk-orange/40 rounded-3xl blur-xl opacity-60 group-hover:opacity-90 transition-opacity" />
+
+              {/* 24 hour badge */}
+              <motion.div
+                initial={{ scale: 0, rotate: -20 }}
+                whileInView={{ scale: 1, rotate: -8 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute -top-6 -right-4 md:-right-8 z-20"
+              >
+                <div className="relative">
+                  <div className="absolute inset-0 bg-txk-orange rounded-2xl blur-lg opacity-60" />
+                  <div className="relative bg-gradient-to-br from-txk-orange to-txk-orange-light text-white rounded-2xl px-5 py-3 shadow-2xl shadow-txk-orange/50 border border-white/20">
+                    <div className="text-[10px] font-bold uppercase tracking-widest opacity-90">Just</div>
+                    <div className="text-3xl md:text-4xl font-black leading-none">24 Hrs</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Image frame */}
+              <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50">
+                <img
+                  src={`${import.meta.env.BASE_URL}post-stats.jpg`}
+                  alt="TXK Today Facebook post analytics — 177,827 views and 2,077 interactions in 24 hours"
+                  className="w-full h-auto block"
+                />
+                {/* Subtle top gradient for depth */}
+                <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/30 to-transparent pointer-events-none" />
+              </div>
+
+              {/* Caption strip */}
+              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-500">
+                <span className="w-2 h-2 rounded-full bg-txk-orange animate-pulse" />
+                Actual screenshot from TXK Today&apos;s Facebook analytics
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Metrics */}
+          <AnimatedSection delay={0.2} className="lg:col-span-2">
+            <div className="grid grid-cols-2 gap-3">
+              {metrics.map((m, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  className="glass rounded-2xl p-5 border border-white/5 hover:border-txk-orange/30 transition-colors"
+                >
+                  <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${m.accent} flex items-center justify-center mb-3 shadow-lg shadow-txk-orange/20`}>
+                    <m.icon className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="text-2xl md:text-3xl font-black text-white tracking-tight leading-none">{m.value}</div>
+                  <div className="text-[11px] text-gray-400 mt-1.5 uppercase tracking-wide">{m.label}</div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Audience callout */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="mt-4 bg-gradient-to-br from-txk-orange to-txk-orange-light rounded-2xl p-5 shadow-xl shadow-txk-orange/30"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <Users className="w-5 h-5 text-white" />
+                <span className="text-white/90 text-xs font-bold uppercase tracking-widest">Prime Audience</span>
+              </div>
+              <p className="text-white font-semibold leading-snug">
+                <span className="text-2xl font-black">54.6%</span> of viewers are women <span className="opacity-80">ages 25–44</span> — the buying decision-makers of the region.
+              </p>
+            </motion.div>
+          </AnimatedSection>
+        </div>
+
+        {/* Bottom CTA strip */}
+        <AnimatedSection delay={0.4} className="mt-14">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-gray-400 text-lg mb-6">
+              Imagine your business, your event, or your message in front of <span className="text-white font-semibold">90,000+ unique local readers</span> — before tomorrow.
+            </p>
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-2 bg-txk-orange text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-txk-orange-light transition-all shadow-2xl shadow-txk-orange/30 hover:shadow-txk-orange/50"
+            >
+              Put Your Brand Here
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+  )
+}
+
 function Process() {
   const steps = [
     { title: 'Needs Assessment', desc: 'We meet with you to discuss your needs and goals.' },
@@ -1116,6 +1254,7 @@ export default function App() {
         </div>
       </div>
       <Stats />
+      <PostPerformance />
       <Process />
       <AdditionalServices />
       <Contact />
