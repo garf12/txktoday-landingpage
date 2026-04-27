@@ -5,7 +5,8 @@ import {
   Phone, AtSign, Newspaper, Store, Home,
   FileText, Video, Zap, Shield, CheckCircle2,
   ArrowRight, Star, Clock, Sparkles, Globe, Search,
-  ThumbsUp, MessageCircle, Timer
+  ThumbsUp, MessageCircle, Timer, Calendar, BarChart3, Flame,
+  MousePointerClick, UserCheck, Activity, Layers
 } from 'lucide-react'
 
 function AnimatedSection({ children, className = '', delay = 0 }) {
@@ -261,7 +262,7 @@ function About() {
 
       {/* Bottom divider into next section */}
       <svg className="w-full h-8 -mb-px" viewBox="0 0 1440 32" preserveAspectRatio="none">
-        <path d="M0,32 L0,8 Q720,-8 1440,8 L1440,32 Z" fill="#f9fafb" />
+        <path d="M0,32 L0,8 Q720,-8 1440,8 L1440,32 Z" fill="#0f0f1a" />
       </svg>
     </section>
   )
@@ -1057,6 +1058,299 @@ function PostPerformance() {
   )
 }
 
+function MonthlyReach() {
+  const metrics = [
+    { icon: Eye, value: '15.5M+', label: 'Total Views', sub: 'January' },
+    { icon: TrendingUp, value: '+28.4%', label: 'Month-Over-Month', sub: 'vs. prior 31 days', positive: true },
+    { icon: Flame, value: '1.5M+', label: 'Peak Day', sub: 'Jan 26 alone' },
+    { icon: BarChart3, value: '7', label: 'Posts Over 300K', sub: 'views each' },
+  ]
+
+  const competitors = [
+    { name: 'TXK Today', followers: 116000, label: '116K+', us: true },
+    { name: 'Texarkana FYI', followers: 52000, label: '52K' },
+    { name: 'Texarkana Gazette', followers: 35000, label: '35K' },
+    { name: 'KKYR Radio', followers: 20000, label: '20K' },
+    { name: 'NPR Texarkana', followers: 798, label: '798' },
+  ]
+  const compMax = competitors[0].followers
+
+  return (
+    <section id="monthly" className="py-24 bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-hidden">
+      {/* Soft orange wash accents */}
+      <div className="absolute top-0 right-0 w-[30rem] h-[30rem] bg-txk-orange/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[30rem] h-[30rem] bg-txk-orange/5 rounded-full blur-3xl" />
+
+      <div className="max-w-7xl mx-auto px-6 relative">
+        <AnimatedSection className="text-center mb-12">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-txk-orange/10 text-txk-orange text-sm font-semibold mb-5 border border-txk-orange/20">
+            <Calendar className="w-4 h-4" />
+            A Typical Month on Our Page
+          </span>
+          <h2 className="text-4xl md:text-6xl font-black text-txk-dark leading-[1.05] mb-4">
+            31 Days. <span className="text-gradient">15.5 Million</span>
+            <br />Facebook Views.
+          </h2>
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+            And we&apos;re still climbing — January grew{' '}
+            <span className="inline-flex items-center gap-1 font-bold text-green-600">
+              <TrendingUp className="w-4 h-4" />+28.4%
+            </span>{' '}
+            over the previous 31 days.
+          </p>
+        </AnimatedSection>
+
+        {/* Top-line metric cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
+          {metrics.map((m, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="bg-white rounded-2xl p-5 border border-gray-100 shadow-lg shadow-txk-orange/5 text-center"
+            >
+              <div className="w-10 h-10 bg-txk-cream rounded-xl flex items-center justify-center mx-auto mb-3">
+                <m.icon className="w-5 h-5 text-txk-orange" />
+              </div>
+              <div className={`text-3xl font-black tracking-tight leading-none ${m.positive ? 'text-green-600' : 'text-txk-dark'}`}>
+                {m.value}
+              </div>
+              <div className="text-xs font-semibold text-txk-dark mt-2 uppercase tracking-wide">{m.label}</div>
+              <div className="text-[11px] text-gray-400 mt-1">{m.sub}</div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Main graphic + top posts */}
+        <div className="grid lg:grid-cols-5 gap-8 items-start max-w-6xl mx-auto">
+          <AnimatedSection delay={0.15} className="lg:col-span-3">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-br from-txk-orange/30 via-transparent to-txk-orange/30 rounded-3xl blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
+              <div className="relative rounded-3xl overflow-hidden border border-gray-200 shadow-2xl shadow-txk-dark/20">
+                <img
+                  src={`${import.meta.env.BASE_URL}monthly-views.png`}
+                  alt="15,527,552 Facebook views in January with most viewed posts"
+                  className="w-full h-auto block"
+                />
+              </div>
+              <div className="mt-3 flex items-center justify-center gap-2 text-xs text-gray-500">
+                <span className="w-2 h-2 rounded-full bg-txk-orange animate-pulse" />
+                Meta Business Suite — January page performance
+              </div>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.25} className="lg:col-span-2">
+            <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg shadow-gray-100">
+              <div className="flex items-center gap-2 mb-1">
+                <Facebook className="w-5 h-5 text-txk-orange" />
+                <h3 className="text-lg font-bold text-txk-dark">Texarkana&apos;s Most Followed News Source</h3>
+              </div>
+              <p className="text-xs text-gray-400 mb-5">How TXK Today stacks up against every other Texarkana news outlet.</p>
+
+              <ul className="space-y-4">
+                {competitors.map((c, i) => {
+                  const pct = Math.max(2, Math.round((c.followers / compMax) * 100))
+                  return (
+                    <li key={i}>
+                      <div className="flex items-center justify-between text-sm mb-1.5">
+                        <span className={`font-semibold ${c.us ? 'text-txk-dark' : 'text-gray-500'}`}>
+                          {c.us && <span className="inline-block w-1.5 h-1.5 rounded-full bg-txk-orange mr-2 align-middle" />}
+                          {c.name}
+                        </span>
+                        <span className={`tabular-nums font-black ${c.us ? 'text-txk-orange text-base' : 'text-gray-500'}`}>
+                          {c.label}
+                        </span>
+                      </div>
+                      <div className={`h-3 rounded-full overflow-hidden ${c.us ? 'bg-txk-cream' : 'bg-gray-100'}`}>
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${pct}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: 0.1 * i, ease: 'easeOut' }}
+                          className={`h-full rounded-full ${
+                            c.us
+                              ? 'bg-gradient-to-r from-txk-orange to-txk-orange-light shadow-sm shadow-txk-orange/40'
+                              : 'bg-gray-300'
+                          }`}
+                        />
+                      </div>
+                    </li>
+                  )
+                })}
+              </ul>
+
+              <div className="mt-6 pt-5 border-t border-gray-100 text-center">
+                <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">More followers than</div>
+                <div className="text-sm font-semibold text-txk-dark">every other local news outlet <span className="text-txk-orange">combined</span>.</div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function WebsiteTraffic() {
+  const heroMetrics = [
+    { icon: Eye, value: '810K', label: 'Pageviews', sub: '30 days' },
+    { icon: Users, value: '114K', label: 'Active Users', sub: '30 days' },
+    { icon: MousePointerClick, value: '2.1M', label: 'Events Tracked', sub: '30 days' },
+    { icon: Activity, value: '543K', label: 'Sessions', sub: '30 days' },
+  ]
+
+  const secondary = [
+    { icon: UserCheck, value: '313K', label: 'New Visitors' },
+    { icon: Clock, value: '1m 07s', label: 'Avg. Engagement Time' },
+    { icon: Layers, value: '22K', label: 'Weekly Active Users' },
+    { icon: Flame, value: '3.3K', label: 'Daily Active Users' },
+  ]
+
+  const topPages = [
+    { title: 'TXK Today | Homepage', views: '117K' },
+    { title: 'Obituaries Texarkana', views: '29K' },
+    { title: 'Dallas County jury…', views: '22K' },
+    { title: 'Texarkana Pastor Arrest', views: '17K' },
+    { title: 'Army awards $80M…', views: '15K' },
+    { title: 'Crime Archives | Texarkana', views: '13K' },
+  ]
+  const topMax = 117
+
+  return (
+    <section id="website" className="py-24 bg-txk-darker relative overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[40rem] h-[40rem] bg-txk-orange/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-[30rem] h-[30rem] bg-txk-orange/5 rounded-full blur-3xl" />
+
+      {/* Subtle grid pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(232,125,30,1) 1px, transparent 1px), linear-gradient(90deg, rgba(232,125,30,1) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 relative">
+        <AnimatedSection className="text-center mb-12">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-txk-orange text-sm font-semibold mb-5">
+            <Globe className="w-4 h-4" />
+            On the Website Itself
+          </span>
+          <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.05] mb-4">
+            <span className="text-gradient">TXKtoday.com</span>
+            <br />Where Texarkana Reads.
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Beyond social — these are real Google Analytics numbers from a single month on the site.
+          </p>
+        </AnimatedSection>
+
+        {/* Hero metric row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-4">
+          {heroMetrics.map((m, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="relative glass rounded-2xl p-5 border border-white/5 hover:border-txk-orange/30 transition-colors overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-20 h-20 bg-txk-orange/10 rounded-full blur-2xl" />
+              <div className="relative">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-txk-orange to-txk-orange-light flex items-center justify-center mb-3 shadow-lg shadow-txk-orange/20">
+                  <m.icon className="w-4 h-4 text-white" />
+                </div>
+                <div className="text-3xl md:text-4xl font-black text-white tracking-tight leading-none">{m.value}</div>
+                <div className="text-[11px] text-gray-300 mt-2 uppercase tracking-wider font-semibold">{m.label}</div>
+                <div className="text-[10px] text-gray-500 mt-0.5">{m.sub}</div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Secondary metric row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
+          {secondary.map((m, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -2 }}
+              className="bg-white/[0.03] rounded-xl p-4 border border-white/5 flex items-center gap-3"
+            >
+              <m.icon className="w-5 h-5 text-txk-orange shrink-0" />
+              <div className="min-w-0">
+                <div className="text-lg font-black text-white leading-none">{m.value}</div>
+                <div className="text-[11px] text-gray-400 mt-1 truncate">{m.label}</div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Two-column: screenshot + top pages */}
+        <div className="grid lg:grid-cols-5 gap-8 items-start max-w-6xl mx-auto">
+          <AnimatedSection className="lg:col-span-3">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-br from-txk-orange/30 via-transparent to-txk-orange/30 rounded-3xl blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
+              <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 bg-white">
+                <img
+                  src={`${import.meta.env.BASE_URL}website-analytics.png`}
+                  alt="Google Analytics engagement overview for TXKtoday.com — 810K views, 114K active users, 2.1M events"
+                  className="w-full h-auto block"
+                />
+              </div>
+              <div className="mt-3 flex items-center justify-center gap-2 text-xs text-gray-500">
+                <span className="w-2 h-2 rounded-full bg-txk-orange animate-pulse" />
+                Google Analytics — TXKtoday.com engagement overview
+              </div>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.2} className="lg:col-span-2">
+            <div className="glass rounded-3xl p-6 border border-white/5">
+              <div className="flex items-center gap-2 mb-5">
+                <BarChart3 className="w-5 h-5 text-txk-orange" />
+                <h3 className="text-lg font-bold text-white">Top Pages This Month</h3>
+              </div>
+              <ul className="space-y-3">
+                {topPages.map((p, i) => {
+                  const num = parseFloat(p.views)
+                  const pct = Math.round((num / topMax) * 100)
+                  return (
+                    <li key={i}>
+                      <div className="flex items-center justify-between text-sm mb-1.5">
+                        <span className="text-gray-300 font-medium truncate pr-2">{p.title}</span>
+                        <span className="font-black text-white tabular-nums shrink-0">{p.views}</span>
+                      </div>
+                      <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${pct}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: 0.08 * i, ease: 'easeOut' }}
+                          className="h-full bg-gradient-to-r from-txk-orange to-txk-orange-light rounded-full"
+                        />
+                      </div>
+                    </li>
+                  )
+                })}
+              </ul>
+
+              {/* Live indicator */}
+              <div className="mt-6 pt-5 border-t border-white/5 flex items-center gap-3">
+                <div className="relative">
+                  <div className="w-2.5 h-2.5 bg-green-400 rounded-full" />
+                  <div className="absolute inset-0 w-2.5 h-2.5 bg-green-400 rounded-full animate-ping" />
+                </div>
+                <div className="text-xs text-gray-400">
+                  <span className="text-white font-bold">72 readers</span> active in the last 30 minutes
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Process() {
   const steps = [
     { title: 'Needs Assessment', desc: 'We meet with you to discuss your needs and goals.' },
@@ -1235,6 +1529,9 @@ export default function App() {
       <Navbar />
       <Hero />
       <About />
+      <PostPerformance />
+      <MonthlyReach />
+      <WebsiteTraffic />
       <Advertisers />
       <Plans />
       <Specialties />
@@ -1254,7 +1551,6 @@ export default function App() {
         </div>
       </div>
       <Stats />
-      <PostPerformance />
       <Process />
       <AdditionalServices />
       <Contact />

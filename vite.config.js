@@ -5,4 +5,8 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   base: '/txktoday-landingpage/',
   plugins: [react(), tailwindcss()],
+  server: {
+    port: 5180,
+    strictPort: true,
+  },
 })
