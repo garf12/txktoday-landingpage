@@ -1085,7 +1085,7 @@ function MonthlyReach() {
         <AnimatedSection className="text-center mb-12">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-txk-orange/10 text-txk-orange text-sm font-semibold mb-5 border border-txk-orange/20">
             <Calendar className="w-4 h-4" />
-            A Typical Month on Our Page
+            A Typical Month on Our Facebook Page
           </span>
           <h2 className="text-4xl md:text-6xl font-black text-txk-dark leading-[1.05] mb-4">
             31 Days. <span className="text-gradient">15.5 Million</span>
