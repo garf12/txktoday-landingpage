@@ -1242,7 +1242,7 @@ function WebsiteTraffic() {
             <br />Where Texarkana Reads.
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Beyond social — these are real Google Analytics numbers from a single month on the site.
+            Beyond social — this is the homepage readers visit every day, backed by real traffic numbers from a single month on the site.
           </p>
         </AnimatedSection>
 
@@ -1291,14 +1291,14 @@ function WebsiteTraffic() {
               <div className="absolute -inset-1 bg-gradient-to-br from-txk-orange/30 via-transparent to-txk-orange/30 rounded-3xl blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
               <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 bg-white">
                 <img
-                  src={`${import.meta.env.BASE_URL}website-analytics.png`}
-                  alt="Google Analytics engagement overview for TXKtoday.com — 810K views, 114K active users, 2.1M events"
+                  src={`${import.meta.env.BASE_URL}txktoday-homepage.png`}
+                  alt="TXKtoday.com homepage — local Texarkana news headlines and coverage"
                   className="w-full h-auto block"
                 />
               </div>
               <div className="mt-3 flex items-center justify-center gap-2 text-xs text-gray-500">
                 <span className="w-2 h-2 rounded-full bg-txk-orange animate-pulse" />
-                Google Analytics — TXKtoday.com engagement overview
+                TXKtoday.com — homepage
               </div>
             </div>
           </AnimatedSection>
@@ -1342,6 +1342,141 @@ function WebsiteTraffic() {
                 <div className="text-xs text-gray-400">
                   <span className="text-white font-bold">72 readers</span> active in the last 30 minutes
                 </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function SearchDominance() {
+  const metrics = [
+    { icon: Search, value: '1.1M+', label: 'Google Impressions', sub: 'last 30 days' },
+    { icon: MousePointerClick, value: '48K+', label: 'Clicks From Google', sub: 'last 30 days' },
+    { icon: Award, value: '1,000+', label: 'Terms in Google Top 3', sub: 'we rank #1 to #3' },
+    { icon: TrendingUp, value: '#1', label: 'For "Texarkana today"', sub: '"news today" & more' },
+  ]
+
+  const terms = [
+    { term: 'texarkana news today', pos: 1.2 },
+    { term: 'texarkana today', pos: 1.3 },
+    { term: 'txk today', pos: 1.0, brand: true },
+    { term: 'texarkana breaking news', pos: 1.7 },
+    { term: 'texarkana news', pos: 1.8 },
+    { term: 'texarkana obituaries', pos: 3.3 },
+  ]
+
+  return (
+    <section id="search" className="py-24 bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-hidden">
+      {/* Soft orange wash accents */}
+      <div className="absolute top-0 left-0 w-[30rem] h-[30rem] bg-txk-orange/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-[30rem] h-[30rem] bg-txk-orange/5 rounded-full blur-3xl" />
+
+      <div className="max-w-7xl mx-auto px-6 relative">
+        <AnimatedSection className="text-center mb-12">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-txk-orange/10 text-txk-orange text-sm font-semibold mb-5 border border-txk-orange/20">
+            <Search className="w-4 h-4" />
+            When Texarkana Googles the News
+          </span>
+          <h2 className="text-4xl md:text-6xl font-black text-txk-dark leading-[1.05] mb-4">
+            <span className="text-gradient">#1 on Google</span>
+            <br />for Texarkana News.
+          </h2>
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+            When the region searches for local news, it finds TXKtoday. We earn{' '}
+            <span className="font-bold text-txk-dark">1.1 million impressions</span> and{' '}
+            <span className="font-bold text-txk-dark">48,000+ clicks</span> from Google every month.
+          </p>
+        </AnimatedSection>
+
+        {/* Top-line metric cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
+          {metrics.map((m, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="bg-white rounded-2xl p-5 border border-gray-100 shadow-lg shadow-txk-orange/5 text-center"
+            >
+              <div className="w-10 h-10 bg-txk-cream rounded-xl flex items-center justify-center mx-auto mb-3">
+                <m.icon className="w-5 h-5 text-txk-orange" />
+              </div>
+              <div className="text-3xl font-black tracking-tight leading-none text-txk-dark">{m.value}</div>
+              <div className="text-xs font-semibold text-txk-dark mt-2 uppercase tracking-wide">{m.label}</div>
+              <div className="text-[11px] text-gray-400 mt-1">{m.sub}</div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Ranking list + local relevance callout */}
+        <div className="grid lg:grid-cols-5 gap-8 items-stretch max-w-6xl mx-auto">
+          <AnimatedSection delay={0.15} className="lg:col-span-3">
+            <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg shadow-gray-100 h-full">
+              <div className="flex items-center gap-2 mb-1">
+                <Search className="w-5 h-5 text-txk-orange" />
+                <h3 className="text-lg font-bold text-txk-dark">Where We Rank on Google</h3>
+              </div>
+              <p className="text-xs text-gray-400 mb-5">Average Google position for the searches that matter most to Texarkana readers.</p>
+
+              <ul className="space-y-4">
+                {terms.map((t, i) => {
+                  const rank = Math.round(t.pos)
+                  const pct = Math.max(60, Math.round(((11 - t.pos) / 10) * 100))
+                  return (
+                    <li key={i}>
+                      <div className="flex items-center justify-between text-sm mb-1.5">
+                        <span className="font-semibold text-txk-dark truncate pr-2">
+                          {t.brand && <span className="inline-block w-1.5 h-1.5 rounded-full bg-txk-orange mr-2 align-middle" />}
+                          &ldquo;{t.term}&rdquo;{t.brand && <span className="text-gray-400 font-normal"> (brand)</span>}
+                        </span>
+                        <span className="shrink-0 inline-flex items-center justify-center min-w-[2.5rem] px-2 py-0.5 rounded-full bg-txk-cream text-txk-orange font-black text-sm tabular-nums">#{rank}</span>
+                      </div>
+                      <div className="h-3 rounded-full overflow-hidden bg-txk-cream">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${pct}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: 0.1 * i, ease: 'easeOut' }}
+                          className="h-full rounded-full bg-gradient-to-r from-txk-orange to-txk-orange-light shadow-sm shadow-txk-orange/40"
+                        />
+                      </div>
+                    </li>
+                  )
+                })}
+              </ul>
+
+              <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-center gap-2 text-xs text-gray-500">
+                <span className="w-2 h-2 rounded-full bg-txk-orange animate-pulse" />
+                Google Search Console, last 30 days
+              </div>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.25} className="lg:col-span-2">
+            <div className="glass-light rounded-3xl p-6 h-full flex flex-col">
+              <div className="flex items-center gap-2 mb-1">
+                <Globe className="w-5 h-5 text-txk-orange" />
+                <h3 className="text-lg font-bold text-txk-dark">The Local Search Leader</h3>
+              </div>
+              <p className="text-sm text-gray-500 mb-6">How relevant is TXKtoday to Texarkana searches? It is the answer engine for the region.</p>
+
+              <div className="space-y-4">
+                <div className="bg-white/70 rounded-2xl p-4 border border-txk-orange/10">
+                  <div className="text-3xl font-black text-gradient leading-none">4,800+</div>
+                  <div className="text-sm font-semibold text-txk-dark mt-1">monthly clicks from &ldquo;Texarkana&rdquo; searches</div>
+                  <div className="text-xs text-gray-400 mt-1">out of 98,000+ monthly impressions</div>
+                </div>
+                <div className="bg-white/70 rounded-2xl p-4 border border-txk-orange/10">
+                  <div className="text-3xl font-black text-gradient leading-none">Top 3</div>
+                  <div className="text-sm font-semibold text-txk-dark mt-1">on Google for the core local terms</div>
+                  <div className="text-xs text-gray-400 mt-1">news, breaking news, obituaries &amp; more</div>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-5 border-t border-txk-orange/10 text-center">
+                <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">When the region searches local news</div>
+                <div className="text-sm font-semibold text-txk-dark">TXKtoday is the <span className="text-txk-orange">first result</span> they see.</div>
               </div>
             </div>
           </AnimatedSection>
@@ -1532,6 +1667,7 @@ export default function App() {
       <PostPerformance />
       <MonthlyReach />
       <WebsiteTraffic />
+      <SearchDominance />
       <Advertisers />
       <Plans />
       <Specialties />
